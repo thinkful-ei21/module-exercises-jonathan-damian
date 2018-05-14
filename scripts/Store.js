@@ -11,8 +11,8 @@ const store = (function() {
         const searchTerm = '';
         
         function findById(id) {
-            return store.items.find(item => item.id === id);
-        }
+            return this.items.find(item => item.id === id);
+                }
         
         function addItem(name) {
             try {
@@ -26,14 +26,28 @@ const store = (function() {
         }
 
         function findAndToggleChecked(id) {
-            this.findById(id).toggleClass('.checked');
+            console.log (this.findById(id))
+            const currentItem = this.findById(id);
+            this.item = this.items.map(function(item){
+                if (items.checked === false) {
+                    return true;
+                }
+                return false;
+            })
+           
         }
         
         function findAndUpdateName(id, newName) {
             try {
                 Item.validateName(newName);
-                Item.findById(id);
-                this.items.push({id: cuid(), newName, checked: false})
+                const currentItem = this.findById(id);
+                currentItem.name = newName;
+                this.items = this.items.map(function(item){
+                    if (item.id === id) {
+                        return currentItem;
+                    }
+                    return item;
+                 }); 
             }
             catch(e) {
                 console.log('Cannot update name: ' + e.message);
