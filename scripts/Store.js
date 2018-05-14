@@ -29,12 +29,11 @@ const store = (function() {
             console.log (this.findById(id))
             const currentItem = this.findById(id);
             this.item = this.items.map(function(item){
-                if (items.checked === false) {
+                if (items.checked == false) {
                     return true;
                 }
                 return false;
             })
-           
         }
         
         function findAndUpdateName(id, newName) {
@@ -58,6 +57,14 @@ const store = (function() {
             this.items = this.items.filter(item => {
                 return item.id !== id;
             });
+        }
+
+        function toggleCheckedFilter() {
+            this.hideCheckedItems = !this.hideCheckedItems;
+        }
+
+        function setSearchTerm(val) {
+            this.searchTerm = val;
         }
       
         return {
